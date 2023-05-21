@@ -1,0 +1,55 @@
+@model Nhom05.Models.HoaDon
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="">
+<div class="row">
+    <div class="col-md-4 w3-card-4">
+          <h2 class="w3-container w3-green w3-margin w3-round w3-padding w3-center">Hóa Đơn</h2>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IDHoaDon" class="control-label"></label>
+                <input asp-for="IDHoaDon" class="form-control" value="@ViewBag.IDHoaDon" readonly />
+                <span asp-validation-for="IDHoaDon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDKhachHang" class="control-label">Tên Khách Hàng</label>
+                <select asp-for="IDKhachHang" class ="form-control" asp-items="ViewBag.IDKhachHang"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDSanPham" class="control-label">Tên Sản Phẩm</label>
+                <select asp-for="IDSanPham" class ="form-control" asp-items="ViewBag.IDSanPham"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChi" class="control-label"> Địa Chỉ</label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="STD" class="control-label"> Số Điện Thoại</label>
+                <input asp-for="STD" class="form-control" />
+                <span asp-validation-for="STD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TongGia" class="control-label"> Tổng Giá Tiền</label>
+                <input asp-for="TongGia" class="form-control" />
+                <span asp-validation-for="TongGia" class="text-danger"></span>
+            </div>
+              <div class="form-group abc">
+                <input type="submit" value="Create" class="btn btn-primary w3-margin" />
+                <a asp-action="Index" class="btn btn-primary w3-margin w3-button w3-khaki">Danh Sách Hóa Đơn</a>
+            </div>
+            <div>
+
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

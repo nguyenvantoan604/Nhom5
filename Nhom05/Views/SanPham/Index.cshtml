@@ -1,0 +1,61 @@
+@model IEnumerable<Nhom05.Models.SanPham>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="">Danh Sách Sản Phẩm</h1>
+
+<p>
+    <a asp-action="Create" class="w3-button w3-teal w3-round ">Thêm Sản Phẩm</a>
+</p>
+<form asp-action="Index">
+    <p></p>
+    <div class="form-group form-inline">
+        <input type="text" name="searchString" class="padding"placeholder="Tên sản phẩm..." >
+        <input type="submit" class="w3-button w3-indigo w3-round"  value="Search"/>
+    </div>
+</form>
+<div>
+    <a asp-action="Index" class="w3-button w3-khaki w3-round w3-margin">Về Danh Sách Sản Phẩm</a>
+    
+</div>
+<table class="w3-table-all w3-card-4">
+    <thead >
+        <tr class="w3-blue">
+            <th>
+                @Html.DisplayNameFor(model => model.TenSanPham)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThuongHieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr  >
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThuongHieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                <a class="w3-button w3-blue w3-round" asp-action="Edit" asp-route-id="@item.IDSanPham">Edit</a> |
+                <a class="w3-button w3-green w3-round" asp-action="Details" asp-route-id="@item.IDSanPham">Details</a> |
+                <a class="w3-button w3-red w3-round" asp-action="Delete" asp-route-id="@item.IDSanPham">Delete</a> 
+            
+            </td>
+        </tr>
+}
+ 
+    </tbody>
+</table>

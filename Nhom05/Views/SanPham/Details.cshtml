@@ -1,0 +1,37 @@
+@model Nhom05.Models.SanPham
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="">
+
+    <hr />
+    
+    <dl class="row w3-card-4 ">
+            <h3 class="w3-container w3-green w3-round w3-padding-16">Thông tin Sản Phẩm</h3>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenSanPham)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenSanPham)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThuongHieu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThuongHieu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="w3-button w3-blue w3-round" asp-route-id="@Model?.IDSanPham">Edit</a> |
+    <a asp-action="Index" class="w3-button w3-khaki w3-round">Danh sách sản phẩm</a>
+</div>

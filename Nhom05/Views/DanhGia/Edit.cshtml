@@ -1,0 +1,38 @@
+@model Nhom05.Models.DanhGia
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-4 w3-card-4 w3-round">
+         <h3 class="w3-container w3-blue w3-round w3-padding-16">Sửa Đánh Giá</h3>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TenKhachHang" />
+            <div class="form-group">
+                <label asp-for="NoiDung" class="control-label">Nội Dung</label>
+                <input asp-for="NoiDung" class="form-control" />
+                <span asp-validation-for="NoiDung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDSanPham" class="control-label">Sản Phẩm</label>
+                <select asp-for="IDSanPham" class="form-control" asp-items="ViewBag.IDSanPham"></select>
+                <span asp-validation-for="IDSanPham" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary w3-margin" />
+                   <a asp-action="Index" class="btn btn-primary w3-button w3-khaki w3-round">Đánh giá của bạn</a>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
