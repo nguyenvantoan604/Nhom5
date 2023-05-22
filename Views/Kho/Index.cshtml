@@ -1,0 +1,53 @@
+@model IEnumerable<Nhom5.Models.Kho>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên Kho
+            </th>
+            <th>
+                Tên Sản Phẩm
+            </th>
+            <th>
+                Thương Hiệu
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThuongHieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChiKho)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.KhoID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.KhoID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.KhoID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
