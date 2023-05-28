@@ -14,6 +14,7 @@ namespace Nhom5.Controllers
     public class KhoController : Controller
     {
         private readonly ApplicationDbContext _context;
+        StringProcess kh = new StringProcess();
         private ExcelProcess _excelProcess = new ExcelProcess();
 
         public KhoController(ApplicationDbContext context)
@@ -50,6 +51,15 @@ namespace Nhom5.Controllers
         // GET: Kho/Create
         public IActionResult Create()
         {
+            var newID = "";
+            if(_context.Khos.Count()==0){
+                newID = "Kho01";
+            }else{
+                var IDkho = _context.Khos.OrderByDescending(x => x.KhoID).First().KhoID;
+                newID = kh.AutoGenerateKey(IDkho);
+            }
+            ViewBag.KhoID = newID;
+    
             return View();
         }
 
