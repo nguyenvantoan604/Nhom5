@@ -5,7 +5,8 @@ namespace Nhom05.Models;
  [Table("DanhGias")]
  public class DanhGia{
   [Key]
-
+   
+   public string IDDanhGia {get;set;  }
      public string TenKhachHang {get;set;}
     public string NoiDung {get;set;}
     

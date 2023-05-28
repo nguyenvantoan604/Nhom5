@@ -234,7 +234,6 @@ D:\BTL\Nhom05\bin\Debug\net7.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.reso
 D:\BTL\Nhom05\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\alpine-arm\native\libe_sqlite3.so
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\alpine-arm64\native\libe_sqlite3.so
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\alpine-x64\native\libe_sqlite3.so
@@ -258,8 +257,6 @@ D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win-arm\native\e_sqlite3.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
-D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\BTL\Nhom05\obj\Debug\net7.0\staticwebassets\msbuild.Nhom05.Microsoft.AspNetCore.StaticWebAssets.props
@@ -278,3 +275,9 @@ D:\BTL\Nhom05\obj\Debug\net7.0\refint\Nhom05.dll
 D:\BTL\Nhom05\obj\Debug\net7.0\Nhom05.pdb
 D:\BTL\Nhom05\obj\Debug\net7.0\Nhom05.genruntimeconfig.cache
 D:\BTL\Nhom05\obj\Debug\net7.0\ref\Nhom05.dll
+D:\BTL\Nhom05\bin\Debug\net7.0\EPPlus.dll
+D:\BTL\Nhom05\bin\Debug\net7.0\EPPlus.Interfaces.dll
+D:\BTL\Nhom05\bin\Debug\net7.0\EPPlus.System.Drawing.dll
+D:\BTL\Nhom05\bin\Debug\net7.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\BTL\Nhom05\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll

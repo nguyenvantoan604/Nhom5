@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Nhom05.Data;
 using Nhom05.Models;
+using Nhom05.Models.Process;
 
 namespace Nhom05.Controllers
 {
     public class DanhGiaController : Controller
     {
         private readonly ApplicationDbContext _context;
+        StringProcess dh = new StringProcess();
 
         public DanhGiaController(ApplicationDbContext context)
         {
@@ -22,21 +24,21 @@ namespace Nhom05.Controllers
         // GET: DanhGia
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.DanhGias.Include(d => d.SanPham);
+            var applicationDbContext = _context.DanhGia.Include(d => d.SanPham);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: DanhGia/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.DanhGias == null)
+            if (id == null || _context.DanhGia == null)
             {
                 return NotFound();
             }
 
-            var danhGia = await _context.DanhGias
+            var danhGia = await _context.DanhGia
                 .Include(d => d.SanPham)
-                .FirstOrDefaultAsync(m => m.TenKhachHang == id);
+                .FirstOrDefaultAsync(m => m.IDDanhGia == id);
             if (danhGia == null)
             {
                 return NotFound();
@@ -48,6 +50,15 @@ namespace Nhom05.Controllers
         // GET: DanhGia/Create
         public IActionResult Create()
         {
+            var newID ="";
+            if(_context.DanhGia.Count()==0){
+                newID ="DG01";
+            }else{
+                var IDdg = _context.DanhGia.OrderByDescending(x => x.IDDanhGia).First().IDDanhGia;
+                newID = dh.AutoGenerateKey(IDdg);
+            }
+            ViewBag.IDDanhGia = newID;
+
             ViewData["IDSanPham"] = new SelectList(_context.SanPhams, "IDSanPham", "TenSanPham");
             return View();
         }
@@ -57,7 +68,7 @@ namespace Nhom05.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TenKhachHang,NoiDung,IDSanPham")] DanhGia danhGia)
+        public async Task<IActionResult> Create([Bind("IDDanhGia,TenKhachHang,NoiDung,IDSanPham")] DanhGia danhGia)
         {
             if (ModelState.IsValid)
             {
@@ -72,12 +83,12 @@ namespace Nhom05.Controllers
         // GET: DanhGia/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.DanhGias == null)
+            if (id == null || _context.DanhGia == null)
             {
                 return NotFound();
             }
 
-            var danhGia = await _context.DanhGias.FindAsync(id);
+            var danhGia = await _context.DanhGia.FindAsync(id);
             if (danhGia == null)
             {
                 return NotFound();
@@ -91,9 +102,9 @@ namespace Nhom05.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("TenKhachHang,NoiDung,IDSanPham")] DanhGia danhGia)
+        public async Task<IActionResult> Edit(string id, [Bind("IDDanhGia,TenKhachHang,NoiDung,IDSanPham")] DanhGia danhGia)
         {
-            if (id != danhGia.TenKhachHang)
+            if (id != danhGia.IDDanhGia)
             {
                 return NotFound();
             }
@@ -107,7 +118,7 @@ namespace Nhom05.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DanhGiaExists(danhGia.TenKhachHang))
+                    if (!DanhGiaExists(danhGia.IDDanhGia))
                     {
                         return NotFound();
                     }
@@ -125,14 +136,14 @@ namespace Nhom05.Controllers
         // GET: DanhGia/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.DanhGias == null)
+            if (id == null || _context.DanhGia == null)
             {
                 return NotFound();
             }
 
-            var danhGia = await _context.DanhGias
+            var danhGia = await _context.DanhGia
                 .Include(d => d.SanPham)
-                .FirstOrDefaultAsync(m => m.TenKhachHang == id);
+                .FirstOrDefaultAsync(m => m.IDDanhGia == id);
             if (danhGia == null)
             {
                 return NotFound();
@@ -146,14 +157,14 @@ namespace Nhom05.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.DanhGias == null)
+            if (_context.DanhGia == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.DanhGias'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.DanhGia'  is null.");
             }
-            var danhGia = await _context.DanhGias.FindAsync(id);
+            var danhGia = await _context.DanhGia.FindAsync(id);
             if (danhGia != null)
             {
-                _context.DanhGias.Remove(danhGia);
+                _context.DanhGia.Remove(danhGia);
             }
             
             await _context.SaveChangesAsync();
@@ -162,7 +173,7 @@ namespace Nhom05.Controllers
 
         private bool DanhGiaExists(string id)
         {
-          return (_context.DanhGias?.Any(e => e.TenKhachHang == id)).GetValueOrDefault();
+          return (_context.DanhGia?.Any(e => e.IDDanhGia == id)).GetValueOrDefault();
         }
     }
 }

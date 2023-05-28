@@ -5,13 +5,15 @@
 }
 
 
-
 <p>
- <a asp-action="Create" class="w3-button w3-teal w3-round ">Thêm Đánh Giá</a>
+   <a asp-action="Create" class="w3-button w3-teal w3-round ">Đánh Giá</a>
 </p>
 <table class="w3-table-all w3-card-4">
     <thead>
         <tr class="w3-blue">
+            <th>
+                @Html.DisplayNameFor(model => model.TenKhachHang)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.NoiDung)
             </th>
@@ -25,15 +27,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.TenKhachHang)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.NoiDung)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SanPham.TenSanPham)
             </td>
             <td>
-                <a class="w3-button w3-blue w3-round" asp-action="Edit" asp-route-id="@item.TenKhachHang">Edit</a> |
-                <a class="w3-button w3-green w3-round" asp-action="Details" asp-route-id="@item.TenKhachHang">Details</a> |
-                <a class="w3-button w3-red w3-round" asp-action="Delete" asp-route-id="@item.TenKhachHang">Delete</a>
+                <a class="w3-button w3-blue w3-round"  asp-action="Edit" asp-route-id="@item.IDDanhGia">Edit</a> |
+                <a class="w3-button w3-green w3-round" asp-action="Details" asp-route-id="@item.IDDanhGia">Details</a> |
+                <a class="w3-button w3-red w3-round" asp-action="Delete" asp-route-id="@item.IDDanhGia">Delete</a>
             </td>
         </tr>
 }

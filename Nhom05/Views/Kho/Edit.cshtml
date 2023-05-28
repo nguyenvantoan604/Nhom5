@@ -1,0 +1,47 @@
+@model Nhom05.Models.Kho
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="row">
+    <div class="col-md-4 w3-card-4 w3-round">
+         <h3 class="w3-container w3-blue w3-round w3-padding-16">Sửa thông tin Kho và Sản Phẩm</h3>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="KhoID" />
+            <div class="form-group">
+                <label asp-for="TenKho" class="control-label"></label>
+                <input asp-for="TenKho" class="form-control" />
+                <span asp-validation-for="TenKho" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenSanPham" class="control-label"></label>
+                <input asp-for="TenSanPham" class="form-control" />
+                <span asp-validation-for="TenSanPham" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThuongHieu" class="control-label"></label>
+                <input asp-for="ThuongHieu" class="form-control" />
+                <span asp-validation-for="ThuongHieu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChiKho" class="control-label"></label>
+                <input asp-for="DiaChiKho" class="form-control" />
+                <span asp-validation-for="DiaChiKho" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary w3-margin" />
+            </div>
+                <div>
+              <a asp-action="Index" class="w3-button w3-khaki w3-round w3-margin-bottom">Danh Sách Kho và Sản Phẩm</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

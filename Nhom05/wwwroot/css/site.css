@@ -45,3 +45,16 @@ body {
     padding: 3px;
     border-radius: 3px;
 }
+
+.hover {
+    display: none;
+}
+
+.toan {
+    position: relative;
+}
+
+.toan:hover .hover {
+    position: absolute;
+    display: inline-block;
+}

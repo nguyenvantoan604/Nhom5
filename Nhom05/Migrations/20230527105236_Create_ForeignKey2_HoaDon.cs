@@ -5,29 +5,29 @@
 namespace Nhom05.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_Foreignkey_HoaDon : Migration
+    public partial class Create_ForeignKey2_HoaDon : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "IDSanPham",
+                name: "IDNhanVien",
                 table: "HoaDons",
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HoaDons_IDSanPham",
+                name: "IX_HoaDons_IDNhanVien",
                 table: "HoaDons",
-                column: "IDSanPham");
+                column: "IDNhanVien");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_HoaDons_SanPhams_IDSanPham",
+                name: "FK_HoaDons_NhanVien_IDNhanVien",
                 table: "HoaDons",
-                column: "IDSanPham",
-                principalTable: "SanPhams",
-                principalColumn: "IDSanPham",
+                column: "IDNhanVien",
+                principalTable: "NhanVien",
+                principalColumn: "IDNhanVien",
                 onDelete: ReferentialAction.Cascade);
         }
 
@@ -35,15 +35,15 @@ namespace Nhom05.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_HoaDons_SanPhams_IDSanPham",
+                name: "FK_HoaDons_NhanVien_IDNhanVien",
                 table: "HoaDons");
 
             migrationBuilder.DropIndex(
-                name: "IX_HoaDons_IDSanPham",
+                name: "IX_HoaDons_IDNhanVien",
                 table: "HoaDons");
 
             migrationBuilder.DropColumn(
-                name: "IDSanPham",
+                name: "IDNhanVien",
                 table: "HoaDons");
         }
     }

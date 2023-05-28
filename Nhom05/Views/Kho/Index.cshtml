@@ -1,0 +1,53 @@
+@model IEnumerable<Nhom05.Models.Kho>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="">Danh Sách Kho</h1>
+
+<p>
+    <a asp-action="Create" class="w3-button w3-teal w3-round ">Thêm Kho</a>
+</p>
+<table class="w3-table-all w3-card-4">
+    <thead>
+        <tr class="w3-blue">
+            <th>
+                @Html.DisplayNameFor(model => model.TenKho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenSanPham)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThuongHieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChiKho)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThuongHieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChiKho)
+            </td>
+            <td>
+                <a class="w3-button w3-blue w3-round" asp-action="Edit" asp-route-id="@item.KhoID">Edit</a> |
+                <a class="w3-button w3-green w3-round" asp-action="Details" asp-route-id="@item.KhoID">Details</a> |
+                <a class="w3-button w3-red w3-round" asp-action="Delete" asp-route-id="@item.KhoID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

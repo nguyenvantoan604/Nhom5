@@ -10,8 +10,8 @@ using Nhom05.Data;
 namespace Nhom05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230517102819_Create_Foreignkey_DanhGia")]
-    partial class Create_Foreignkey_DanhGia
+    [Migration("20230521152447_Create_ForeignKey_DanhGia2")]
+    partial class Create_ForeignKey_DanhGia2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Nhom05.Migrations
 
             modelBuilder.Entity("Nhom05.Models.DanhGia", b =>
                 {
-                    b.Property<string>("TenKhachHang")
+                    b.Property<string>("IDDanhGia")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IDSanPham")
@@ -32,7 +32,11 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TenKhachHang");
+                    b.Property<string>("TenKhachHang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IDDanhGia");
 
                     b.HasIndex("IDSanPham");
 
@@ -99,28 +103,6 @@ namespace Nhom05.Migrations
                     b.HasIndex("IDSanPham");
 
                     b.ToTable("KhachHangs");
-                });
-
-            modelBuilder.Entity("Nhom05.Models.NhanVien", b =>
-                {
-                    b.Property<string>("IDNhanVien")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DiaChi")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("KinhNghiem")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TenNhanVien")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("IDNhanVien");
-
-                    b.ToTable("NhanViens");
                 });
 
             modelBuilder.Entity("Nhom05.Models.SanPham", b =>

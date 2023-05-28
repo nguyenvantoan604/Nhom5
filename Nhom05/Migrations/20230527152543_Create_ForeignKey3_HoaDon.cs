@@ -5,7 +5,7 @@
 namespace Nhom05.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_Table_NhanVien : Migration
+    public partial class Create_ForeignKey3_HoaDon : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

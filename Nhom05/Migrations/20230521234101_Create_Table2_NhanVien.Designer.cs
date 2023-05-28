@@ -10,8 +10,8 @@ using Nhom05.Data;
 namespace Nhom05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230517102750_Create_Foreignkey_HoaDon")]
-    partial class Create_Foreignkey_HoaDon
+    [Migration("20230521234101_Create_Table2_NhanVien")]
+    partial class Create_Table2_NhanVien
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Nhom05.Migrations
 
             modelBuilder.Entity("Nhom05.Models.DanhGia", b =>
                 {
-                    b.Property<string>("TenKhachHang")
+                    b.Property<string>("IDDanhGia")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IDSanPham")
@@ -32,7 +32,11 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TenKhachHang");
+                    b.Property<string>("TenKhachHang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IDDanhGia");
 
                     b.HasIndex("IDSanPham");
 
@@ -99,6 +103,24 @@ namespace Nhom05.Migrations
                     b.HasIndex("IDSanPham");
 
                     b.ToTable("KhachHangs");
+                });
+
+            modelBuilder.Entity("Nhom05.Models.Kho", b =>
+                {
+                    b.Property<string>("KhoID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiaChiKho")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenKho")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("KhoID");
+
+                    b.ToTable("Khos");
                 });
 
             modelBuilder.Entity("Nhom05.Models.NhanVien", b =>

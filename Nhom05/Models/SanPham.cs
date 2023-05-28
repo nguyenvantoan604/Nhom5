@@ -5,7 +5,8 @@ namespace Nhom05.Models;
 public class SanPham{
     [Key]
     public string IDSanPham {get;set;}
-    public string TenSanPham{get;set;}
-    public string ThuongHieu{get;set;}
+    public string TenSanPham {get;set;}
+   
+     public string ThuongHieu {get;set;}
     public string Gia {get;set;}
 }

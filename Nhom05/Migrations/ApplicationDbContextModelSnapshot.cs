@@ -18,7 +18,7 @@ namespace Nhom05.Migrations
 
             modelBuilder.Entity("Nhom05.Models.DanhGia", b =>
                 {
-                    b.Property<string>("TenKhachHang")
+                    b.Property<string>("IDDanhGia")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IDSanPham")
@@ -29,7 +29,11 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TenKhachHang");
+                    b.Property<string>("TenKhachHang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IDDanhGia");
 
                     b.HasIndex("IDSanPham");
 
@@ -49,6 +53,10 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("IDNhanVien")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("IDSanPham")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -64,6 +72,8 @@ namespace Nhom05.Migrations
                     b.HasKey("IDHoaDon");
 
                     b.HasIndex("IDKhachHang");
+
+                    b.HasIndex("IDNhanVien");
 
                     b.HasIndex("IDSanPham");
 
@@ -98,6 +108,32 @@ namespace Nhom05.Migrations
                     b.ToTable("KhachHangs");
                 });
 
+            modelBuilder.Entity("Nhom05.Models.Kho", b =>
+                {
+                    b.Property<string>("KhoID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiaChiKho")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenKho")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenSanPham")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ThuongHieu")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("KhoID");
+
+                    b.ToTable("Khos");
+                });
+
             modelBuilder.Entity("Nhom05.Models.NhanVien", b =>
                 {
                     b.Property<string>("IDNhanVien")
@@ -115,9 +151,13 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Tuoi")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("IDNhanVien");
 
-                    b.ToTable("NhanViens");
+                    b.ToTable("NhanVien");
                 });
 
             modelBuilder.Entity("Nhom05.Models.SanPham", b =>
@@ -161,6 +201,12 @@ namespace Nhom05.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Nhom05.Models.NhanVien", "NhanVien")
+                        .WithMany()
+                        .HasForeignKey("IDNhanVien")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Nhom05.Models.SanPham", "SanPham")
                         .WithMany()
                         .HasForeignKey("IDSanPham")
@@ -168,6 +214,8 @@ namespace Nhom05.Migrations
                         .IsRequired();
 
                     b.Navigation("KhachHang");
+
+                    b.Navigation("NhanVien");
 
                     b.Navigation("SanPham");
                 });

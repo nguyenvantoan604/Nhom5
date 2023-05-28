@@ -18,4 +18,9 @@ namespace Nhom05.Models;
     public string DiaChi {get;set;}
     public string STD {get;set;}
     public string TongGia {get;set;}
+     public string IDNhanVien{get;set;}
+    [ForeignKey("IDNhanVien")]
+    public NhanVien? NhanVien {get;set;}
+
+   
  }

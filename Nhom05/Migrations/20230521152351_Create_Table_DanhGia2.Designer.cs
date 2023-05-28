@@ -10,8 +10,8 @@ using Nhom05.Data;
 namespace Nhom05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230517102204_Create_Table_NhanVien")]
-    partial class Create_Table_NhanVien
+    [Migration("20230521152351_Create_Table_DanhGia2")]
+    partial class Create_Table_DanhGia2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Nhom05.Migrations
 
             modelBuilder.Entity("Nhom05.Models.DanhGia", b =>
                 {
-                    b.Property<string>("TenKhachHang")
+                    b.Property<string>("IDDanhGia")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IDSanPham")
@@ -32,7 +32,13 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TenKhachHang");
+                    b.Property<string>("TenKhachHang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IDDanhGia");
+
+                    b.HasIndex("IDSanPham");
 
                     b.ToTable("DanhGias");
                 });
@@ -46,6 +52,14 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("IDKhachHang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IDSanPham")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("STD")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -55,6 +69,10 @@ namespace Nhom05.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("IDHoaDon");
+
+                    b.HasIndex("IDKhachHang");
+
+                    b.HasIndex("IDSanPham");
 
                     b.ToTable("HoaDons");
                 });
@@ -68,6 +86,10 @@ namespace Nhom05.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("IDSanPham")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("STD")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -78,29 +100,9 @@ namespace Nhom05.Migrations
 
                     b.HasKey("IDKhachHang");
 
+                    b.HasIndex("IDSanPham");
+
                     b.ToTable("KhachHangs");
-                });
-
-            modelBuilder.Entity("Nhom05.Models.NhanVien", b =>
-                {
-                    b.Property<string>("IDNhanVien")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DiaChi")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("KinhNghiem")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TenNhanVien")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("IDNhanVien");
-
-                    b.ToTable("NhanViens");
                 });
 
             modelBuilder.Entity("Nhom05.Models.SanPham", b =>
@@ -123,6 +125,47 @@ namespace Nhom05.Migrations
                     b.HasKey("IDSanPham");
 
                     b.ToTable("SanPhams");
+                });
+
+            modelBuilder.Entity("Nhom05.Models.DanhGia", b =>
+                {
+                    b.HasOne("Nhom05.Models.SanPham", "SanPham")
+                        .WithMany()
+                        .HasForeignKey("IDSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SanPham");
+                });
+
+            modelBuilder.Entity("Nhom05.Models.HoaDon", b =>
+                {
+                    b.HasOne("Nhom05.Models.KhachHang", "KhachHang")
+                        .WithMany()
+                        .HasForeignKey("IDKhachHang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nhom05.Models.SanPham", "SanPham")
+                        .WithMany()
+                        .HasForeignKey("IDSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("KhachHang");
+
+                    b.Navigation("SanPham");
+                });
+
+            modelBuilder.Entity("Nhom05.Models.KhachHang", b =>
+                {
+                    b.HasOne("Nhom05.Models.SanPham", "SanPham")
+                        .WithMany()
+                        .HasForeignKey("IDSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SanPham");
                 });
 #pragma warning restore 612, 618
         }

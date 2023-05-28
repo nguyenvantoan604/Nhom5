@@ -6,13 +6,12 @@
 
 
 <p>
-      <a asp-action="Create" class="w3-button w3-teal w3-round ">Tạo Hóa Đơn</a>
+   <a asp-action="Create" class="w3-button w3-teal w3-round ">Hóa Đơn</a>
 </p>
 <table class="w3-table-all w3-card-4">
     <thead>
         <tr class="w3-blue">
             <th>
-     
                 @Html.DisplayNameFor(model => model.KhachHang)
             </th>
             <th>
@@ -27,7 +26,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.TongGia)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.NhanVien)
+            </th>
+                 <th></th>
+          
         </tr>
     </thead>
     <tbody>
@@ -47,6 +50,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TongGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NhanVien.TenNhanVien)
             </td>
             <td>
                 <a class="w3-button w3-blue w3-round" asp-action="Edit" asp-route-id="@item.IDHoaDon">Edit</a> |

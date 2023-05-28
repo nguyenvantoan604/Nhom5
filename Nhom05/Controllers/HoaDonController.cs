@@ -24,7 +24,7 @@ namespace Nhom05.Controllers
         // GET: HoaDon
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.HoaDons.Include(h => h.KhachHang).Include(h => h.SanPham);
+            var applicationDbContext = _context.HoaDons.Include(h => h.KhachHang).Include(h => h.NhanVien).Include(h => h.SanPham);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -38,6 +38,7 @@ namespace Nhom05.Controllers
 
             var hoaDon = await _context.HoaDons
                 .Include(h => h.KhachHang)
+                .Include(h => h.NhanVien)
                 .Include(h => h.SanPham)
                 .FirstOrDefaultAsync(m => m.IDHoaDon == id);
             if (hoaDon == null)
@@ -53,14 +54,14 @@ namespace Nhom05.Controllers
         {
             var newID = "";
             if(_context.HoaDons.Count()==0){
-                newID = "HD01";
+                 newID ="HD01";
             }else{
-                var IDhd = _context.HoaDons.OrderByDescending(x => x.IDHoaDon).First().IDHoaDon;
+                var IDhd = _context.HoaDons.OrderByDescending(h =>h.IDHoaDon).First().IDHoaDon;
                 newID = hd.AutoGenerateKey(IDhd);
             }
             ViewBag.IDHoaDon = newID;
-
             ViewData["IDKhachHang"] = new SelectList(_context.KhachHangs, "IDKhachHang", "TenKhachHang");
+            ViewData["IDNhanVien"] = new SelectList(_context.NhanVien, "IDNhanVien", "TenNhanVien");
             ViewData["IDSanPham"] = new SelectList(_context.SanPhams, "IDSanPham", "TenSanPham");
             return View();
         }
@@ -70,7 +71,7 @@ namespace Nhom05.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDHoaDon,IDKhachHang,IDSanPham,DiaChi,STD,TongGia")] HoaDon hoaDon)
+        public async Task<IActionResult> Create([Bind("IDHoaDon,IDKhachHang,IDSanPham,DiaChi,STD,TongGia,IDNhanVien")] HoaDon hoaDon)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +80,7 @@ namespace Nhom05.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDKhachHang"] = new SelectList(_context.KhachHangs, "IDKhachHang", "TenKhachHang", hoaDon.IDKhachHang);
+            ViewData["IDNhanVien"] = new SelectList(_context.NhanVien, "IDNhanVien", "TenNhanVien", hoaDon.IDNhanVien);
             ViewData["IDSanPham"] = new SelectList(_context.SanPhams, "IDSanPham", "TenSanPham", hoaDon.IDSanPham);
             return View(hoaDon);
         }
@@ -97,6 +99,7 @@ namespace Nhom05.Controllers
                 return NotFound();
             }
             ViewData["IDKhachHang"] = new SelectList(_context.KhachHangs, "IDKhachHang", "TenKhachHang", hoaDon.IDKhachHang);
+            ViewData["IDNhanVien"] = new SelectList(_context.NhanVien, "IDNhanVien", "TenNhanVien", hoaDon.IDNhanVien);
             ViewData["IDSanPham"] = new SelectList(_context.SanPhams, "IDSanPham", "TenSanPham", hoaDon.IDSanPham);
             return View(hoaDon);
         }
@@ -106,7 +109,7 @@ namespace Nhom05.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("IDHoaDon,IDKhachHang,IDSanPham,DiaChi,STD,TongGia")] HoaDon hoaDon)
+        public async Task<IActionResult> Edit(string id, [Bind("IDHoaDon,IDKhachHang,IDSanPham,DiaChi,STD,TongGia,IDNhanVien")] HoaDon hoaDon)
         {
             if (id != hoaDon.IDHoaDon)
             {
@@ -134,6 +137,7 @@ namespace Nhom05.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDKhachHang"] = new SelectList(_context.KhachHangs, "IDKhachHang", "TenKhachHang", hoaDon.IDKhachHang);
+            ViewData["IDNhanVien"] = new SelectList(_context.NhanVien, "IDNhanVien", "TenNhanVien", hoaDon.IDNhanVien);
             ViewData["IDSanPham"] = new SelectList(_context.SanPhams, "IDSanPham", "TenSanPham", hoaDon.IDSanPham);
             return View(hoaDon);
         }
@@ -148,6 +152,7 @@ namespace Nhom05.Controllers
 
             var hoaDon = await _context.HoaDons
                 .Include(h => h.KhachHang)
+                .Include(h => h.NhanVien)
                 .Include(h => h.SanPham)
                 .FirstOrDefaultAsync(m => m.IDHoaDon == id);
             if (hoaDon == null)
