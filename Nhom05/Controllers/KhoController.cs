@@ -161,7 +161,7 @@ namespace Nhom05.Controllers
         {
           return (_context.Khos?.Any(e => e.KhoID == id)).GetValueOrDefault();
         }
-             public async Task<IActionResult> Upload(){
+         public async Task<IActionResult> Upload(){
             return View();
         }
         [HttpPost]
